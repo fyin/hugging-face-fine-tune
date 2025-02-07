@@ -1,0 +1,30 @@
+token_max_length:
+    type: grid_search
+    values: [65]
+
+learning_rate:
+  type: loguniform
+  low: 1e-5
+  high: 1e-3
+
+optimizer:
+  adamw: # default optimizer used by Seq2SeqTrainer
+    weight_decay:
+      type: loguniform
+      low: 1e-3
+      high: 5e-2
+    epsilon:
+      type: loguniform
+      low: 1e-8
+      high: 1e-6
+
+batch_size:
+  train:
+    type: grid_search
+    values: [32, 64]
+  eval:
+    type: grid_search
+    values: [64]
+
+epochs:
+  value: 10

@@ -1,0 +1,28 @@
+datasets: "Helsinki-NLP/kde4"
+model: "Helsinki-NLP/opus-mt-en-zh"
+
+translation:
+  src_lang: "en"
+  tgt_lang: "zh_CN"
+
+evaluation:
+  metric:
+    type: "bleu"
+    path: "sacrebleu"
+  strategy: "steps"
+  steps: 1000
+  early_stopping_patience: 3
+
+save:
+    strategy: "steps"
+    steps: 1000
+    total_checkpoint_limit: 50
+    model_checkpoint_dir: "runs/opus-mt-en-zh-software-"
+    tensorboard_log_dir: "runs/tensorboard_logs"
+    load_best_model_at_end: True
+    predict_with_generate: True  # output generated sequences instead of token probabilities
+
+bf16: True
+
+dataloader:
+  num_workers: 2
